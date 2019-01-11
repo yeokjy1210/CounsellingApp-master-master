@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +24,8 @@ public class homepage extends AppCompatActivity
     ImageView imgStuView;
     TextView txtStuName, txtStuEmail;
     private SharedPreferences prefs;
+
+    Button btnEvent,btnCounselor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,24 @@ public class homepage extends AppCompatActivity
                 Intent s= new Intent(homepage.this,userProfile.class);
                 startActivity(s);            }
         });
+
+        btnCounselor = findViewById(R.id.btn_counselor);
+        btnEvent = findViewById(R.id.btn_event);
+
+        btnCounselor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent s= new Intent(homepage.this,counselorList.class);
+                startActivity(s);            }
+        });
+        btnEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent s= new Intent(homepage.this,eventList.class);
+                startActivity(s);            }
+        });
+
+
     }
 
     @Override
