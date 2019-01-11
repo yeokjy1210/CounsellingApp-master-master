@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:weightSum="10">
+
+        <ImageView
+            android:id="@+id/home_event_image"
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+            android:contentDescription="@string/home_list_item_img"
+            android:scaleType="fitXY"
+            android:src="@drawable/event_photo1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+
+            android:gravity="center"
+            android:id="@+id/home_event_name"
+            android:layout_width="165dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/home_eventName"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/home_event_image"
+            app:layout_constraintStart_toStartOf="@+id/home_event_image" />
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

@@ -1,0 +1,117 @@
+<resources>
+    <string name="app_name">Hope</string>
+    <string name="app_title">HOPE</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="person_abu">Dr. Abu Mamak</string>
+    <string name="person_windy">Dr. Windy Lee</string>
+    <string name="person_john">Dr. John Son</string>
+    <string name="person_samilah">Dr. Samilah Patutlah </string>
+    <string name="person_cindy">Dr. Cindy Chong</string>
+    <string name="img_aboutUs">About Us</string>
+
+    <string name="aboutUs_desc">This counselling application is created by Chua Kah How, Chok Kah Yang and Yeok Jia Ying from RSF2G3
+        for assignment purpose. This counselling application is used for the students in Tunku Abdul Rahman University College (TARUC)
+        to book or reserve for a counselling session with the counsellors available in the campus.</string>
+
+    <string name="help">Help</string>
+    <string name="disclaimer">Disclaimer</string>
+    <string name="privacy">Privacy and Policy</string>
+    <string name="nav_events">Events</string>
+    <string name="img_join_us">Join Us image</string>
+    <string name="desc_img_couns">image of counselor</string>
+    <string name="desc_img_event">image of event</string>
+
+    <string name="homepage">Homepage</string>
+    <string name="name">Name</string>
+    <string name="desc">Description</string>
+    <string name="age">Age</string>
+    <string name="contact">Contact</string>
+    <string name="email">Email</string>
+    <string name="description">Description</string>
+    <string name="venue">Venue</string>
+    <string name="counselor">Counselor</string>
+    <string name="makereserve">Make Reservation</string>
+    <string name="venueTitle">Venue :</string>
+    <string name="ageTitle">Age:</string>
+    <string name="descTitle">Specialize:</string>
+    <string name="experience">Years of Experience:</string>
+    <string name="year">Year</string>
+    <string name="eventTitle">[Event] Never Give Up !</string>
+    <string name="dateTitle">Date:</string>
+    <string name="date">10/1/2019</string>
+    <string name="time">8.00am-8.00pm</string>
+
+    <string name="feeTitle">Fee: RM </string>
+    <string name="fee">35.00</string>
+    <string name="eventDesc">Stay true to yourself, yet always be open to learn. Work hard, and never give up on your dreams,
+        even when nobody else believes they can come true but you.
+        These are not cliches but real tools you need no matter what you do in life to stay focused on your path. Join this event now !
+    </string>
+    <string name="clockImg">clock image</string>
+    <string name="event_image">eventImage</string>
+    <string name="event">Event</string>
+    <string name="dollar_image">dollar image</string>
+    <string name="timeTitle">Time:</string>
+    <string name="venueTitle2">Venue:</string>
+    <string name="venue2">Dewan Utama, TARUC</string>
+    <string name="join">Join</string>
+    <string name="counselor_name">Jacky Chan</string>
+    <string name="counselor_default_image">Counselor Default Image</string>
+    <string name="counselor_detail_venue">A101</string>
+    <string name="counselor_detail_age">37</string>
+    <string name="yearsTitle">Years:</string>
+    <string name="counselor_contact_image">counselor contact image</string>
+    <string name="emailTitle">Email:</string>
+    <string name="default_counselor_email">jackyc@tarc.edu.my</string>
+    <string name="counselor_email_image">counselor email image</string>
+    <string name="venueImage">venue image</string>
+    <string name="yearImage">year image</string>
+    <string name="contactTitle">Contact:</string>
+    <string name="default_counselor_contact">010-3664328</string>
+    <string name="default_counselor_yoe">10</string>
+    <string name="default_counselor_desc">I am a senior counselor with over 10 years of experience and I specialize in providing counseling session on relationship issues such as family issues and friendship issues.</string>
+    <string name="counselorType">counselor type</string>
+    <string name="counselorTypeTile">Speciality:</string>
+    <string name="default_counselor_type">Relationship, Family, Friendship</string>
+    <string name="register_session">Register Session</string>
+    <string name="title_activity_default">defaultActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_homepage">Homepage</string>
+    <string name="homepage_banner_image">homepage banner image</string>
+    <string name="home_eventName">Event Name</string>
+    <string name="event_list_title">Event List</string>
+    <string name="home_list_item_img" />
+    <string name="reservation">Reservation</string>
+    <string name="about_us">About Us</string>
+    <string name="title_activity_about_us">aboutUs</string>
+    <string name="title_activity_counselor_detail">counselorDetail</string>
+    <string name="title_activity_counselor_list">counselorList</string>
+    <string name="title_activity_event_detail">eventDetail</string>
+    <string name="title_activity_event_list">eventList</string>
+    <string name="id">ID (EG: 1805528)</string>
+    <string name="password">Password</string>
+    <string name="confirm">Confirm</string>
+    <string name="full_name">Full Name</string>
+    <string name="student_id_eg_1808528">Student ID (EG: 1808528)</string>
+    <string name="student_dob">Student DOB</string>
+    <string name="phone_no">Phone No.</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="title_activity_user_profile">userProfile</string>
+
+    <string name="select_schedule">Select A Schedule</string>
+    <string name="counselor_name_title">Counselor Name :</string>
+    <string name="date_time">Date/Time:</string>
+    <string name="pick">Pick</string>
+    <string name="submit">Submit</string>
+    <string name="desc_title">Description:</string>
+    <string name="schedule_desc_guide">Write your problem here (Optional)</string>
+</resources>

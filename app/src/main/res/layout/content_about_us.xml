@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".aboutUs"
+    tools:showIn="@layout/app_bar_about_us">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ActionBarThemeOverlay">
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/main_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="383dp"
+            android:layout_height="160dp"
+            android:contentDescription="@string/img_aboutUs"
+            app:srcCompat="@drawable/about_us" />
+
+
+        <TextView
+            android:id="@+id/aboutUs_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:text="@string/aboutUs_desc"
+            android:textSize="20dp" />
+
+        <View
+            android:id="@+id/gray1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <com.luseen.autolinklibrary.AutoLinkTextView
+            android:id="@+id/link_help"
+            android:layout_width="82dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="@string/help"
+            android:textSize="25sp"
+
+
+            >
+
+        </com.luseen.autolinklibrary.AutoLinkTextView>
+
+        <View
+            android:id="@+id/gray2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <com.luseen.autolinklibrary.AutoLinkTextView
+            android:id="@+id/link_disclaimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="@string/disclaimer"
+            android:textSize="25sp" />
+
+        <View
+            android:id="@+id/gray3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <com.luseen.autolinklibrary.AutoLinkTextView
+            android:id="@+id/link_privacy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="@string/privacy"
+            android:textSize="25sp" />
+
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
