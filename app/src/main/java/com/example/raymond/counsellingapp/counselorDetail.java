@@ -1,5 +1,6 @@
 package com.example.raymond.counsellingapp;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -21,21 +22,21 @@ public class counselorDetail extends AppCompatActivity
 
     DrawerLayout drawer;
     NavigationView navigationView;
-    Toolbar toolbar=null;
+    Toolbar toolbar = null;
     TextView txtStuName, txtStuEmail;
     private SharedPreferences prefs;
+    TextView name, dob, type, desc, contact, email,venue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_counselor_detail);
-        Intent intent = getIntent();
-        int position = intent.getIntExtra("position",0);
+
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Counselor Detail");
         setSupportActionBar(toolbar);
-
-        if(getSupportActionBar()!=null)
+        if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -46,25 +47,51 @@ public class counselorDetail extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
         View headerView = navigationView.getHeaderView(0);
 
         txtStuName = headerView.findViewById(R.id.txtStuName);
         txtStuEmail = headerView.findViewById(R.id.txtStuEmail);
         prefs = getSharedPreferences("user", MODE_PRIVATE);
-        String restoredText = prefs.getString("studentName",null);
-        if(restoredText !=null){
-            txtStuName.setText(prefs.getString("studentName","No name"));
-            txtStuEmail.setText(prefs.getString("studentEmail","No email"));
+        String restoredText = prefs.getString("studentName", null);
+        if (restoredText != null) {
+            txtStuName.setText(prefs.getString("studentName", "No name"));
+            txtStuEmail.setText(prefs.getString("studentEmail", "No email"));
         }
 
         headerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent s= new Intent(counselorDetail.this,userProfile.class);
-                startActivity(s);            }
+                Intent s = new Intent(counselorDetail.this, userProfile.class);
+                startActivity(s);
+            }
         });
+
+        String nameExtra = getIntent().getStringExtra("counselorName");
+        String dobExtra = getIntent().getStringExtra("counselorDOB");
+        String typeExtra = getIntent().getStringExtra("counselorType");
+        String descExtra = getIntent().getStringExtra("counselorDesc");
+        String contactExtra = getIntent().getStringExtra("counselorContact");
+        String emailExtra = getIntent().getStringExtra("counselorEmail");
+        String venueExtra = getIntent().getStringExtra("counselorVenue");
+
+        name = findViewById(R.id.textView_counselor_name);
+        dob = findViewById(R.id.textView_counselor_age);
+        type = findViewById(R.id.textView_counselor_type);
+        desc = findViewById(R.id.textView_counselor_desc);
+        contact = findViewById(R.id.textView_counselor_contact);
+        email = findViewById(R.id.textView_counselor_email);
+        venue = findViewById(R.id.textView_counselor_venue);
+
+
+
+        name.setText(nameExtra);
+        dob.setText(dobExtra);
+        type.setText(typeExtra);
+        desc.setText(descExtra);
+        contact.setText(contactExtra);
+        email.setText(emailExtra);
+        venue.setText(venueExtra);
+
     }
 
     @Override
@@ -105,26 +132,26 @@ public class counselorDetail extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        switch (id){
+        switch (id) {
 
             case R.id.nav_homepage:
-                Intent h= new Intent(counselorDetail.this,homepage.class);
+                Intent h = new Intent(counselorDetail.this, homepage.class);
                 startActivity(h);
                 break;
             case R.id.nav_counselor:
-                Intent z= new Intent(counselorDetail.this,counselorList.class);
+                Intent z = new Intent(counselorDetail.this, counselorList.class);
                 startActivity(z);
                 break;
             case R.id.nav_event:
-                Intent i= new Intent(counselorDetail.this,eventList.class);
+                Intent i = new Intent(counselorDetail.this, eventList.class);
                 startActivity(i);
                 break;
             case R.id.nav_aboutus:
-                Intent g= new Intent(counselorDetail.this,aboutUs.class);
+                Intent g = new Intent(counselorDetail.this, aboutUs.class);
                 startActivity(g);
                 break;
             case R.id.nav_signout:
-                Intent s= new Intent(counselorDetail.this,aboutUs.class);
+                Intent s = new Intent(counselorDetail.this, aboutUs.class);
                 startActivity(s);
                 break;
         }

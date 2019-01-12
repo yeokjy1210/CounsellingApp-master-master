@@ -27,7 +27,7 @@ import com.example.raymond.counsellingapp.Model.StudentSchedule;
 
 public class ScheduleTableLayout extends LinearLayout {
     private static final int TABLE_COL = 9;
-    private static final int TABLE_ROW = 14;
+    private static final int TABLE_ROW = 6;
     private boolean isInitialized = false;
     private boolean isDisplayABCD = false;
     private boolean isDisplaySat = false;
@@ -39,6 +39,7 @@ public class ScheduleTableLayout extends LinearLayout {
     private LinearLayout scheduleContainer;
     private StudentSchedule studentSchedule = new StudentSchedule();
     private OnTouchListener onTouchListener;
+    static int rowPos, colPos;
 
     public ScheduleTableLayout(Context context) {
         super(context);
@@ -50,29 +51,46 @@ public class ScheduleTableLayout extends LinearLayout {
         inflate(context, R.layout.schedule_table_layout, this);
     }
 
-    private static ArrayList<String> splitTime(String timeString) {
-        ArrayList<String> infos = new ArrayList<>();
+    private void splitTime(String timeString) {
+
         String[] temp = timeString.split(" ");
         for (String t : temp) {
             switch (t) {
-                case "A":
-                    infos.add("10");
+                case "Mon":
+                    rowPos = 1;
                     break;
-                case "B":
-                    infos.add("11");
+                case "Tue":
+                    rowPos = 2;
                     break;
-                case "C":
-                    infos.add("12");
+                case "Wed":
+                    rowPos = 3;
                     break;
-                case "D":
-                    infos.add("13");
+                case "Thu":
+                    rowPos = 4;
+                    break;
+                case "Fri":
+                    rowPos = 5;
+                    break;
+                case "10":
+                    colPos = 1;
+                    break;
+                case "12":
+                    colPos = 2;
+                    break;
+                case "14":
+                    colPos = 3;
+                    break;
+                case "16":
+                    colPos = 4;
+                    break;
+                case "18":
+                    colPos = 5;
                     break;
                 default:
-                    infos.add(t);
+
                     break;
             }
         }
-        return infos;
     }
 
     @Override
@@ -123,11 +141,13 @@ public class ScheduleTableLayout extends LinearLayout {
             tableRow.setGravity(Gravity.CENTER);
             tableRow.setBackgroundResource(i % 2 != 0 ? R.color.cloud
                     : R.color.white);
+
+            String[] Day = {"Mon", "Tue", "Wed", "Thu", "Fri"};
+
             for (int j = 0; j < TABLE_COL; j++) {
                 ScheduleBlock tableCell = new ScheduleBlock(getContext());
                 if (j == 0 && i > 0) {
-                    tableCell.setText(Integer.toHexString(i).toUpperCase(
-                            Locale.US));
+                    tableCell.setText(Day[i - 1]);
                 }
                 tableCell.setId(j != TABLE_COL - 1 ? i : 14);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -145,19 +165,17 @@ public class ScheduleTableLayout extends LinearLayout {
         }
         LinearLayout titleRow = (LinearLayout) scheduleContainer.getChildAt(0);
         ScheduleBlock text = (ScheduleBlock) titleRow.getChildAt(1);
-        text.setText("Mon");
+        text.setText("10am");
         text = (ScheduleBlock) titleRow.getChildAt(2);
-        text.setText("Tue");
+        text.setText("12pm");
         text = (ScheduleBlock) titleRow.getChildAt(3);
-        text.setText("Wed");
+        text.setText("2pm");
         text = (ScheduleBlock) titleRow.getChildAt(4);
-        text.setText("Thu");
+        text.setText("4pm");
         text = (ScheduleBlock) titleRow.getChildAt(5);
-        text.setText("Fri");
-        text = (ScheduleBlock) titleRow.getChildAt(6);
-        text.setText("Sat");
-        text = (ScheduleBlock) titleRow.getChildAt(7);
-        text.setText("Sun");
+        text.setText("6pm");
+
+
     }
 
     private void resetScheduleTable() {
@@ -197,6 +215,8 @@ public class ScheduleTableLayout extends LinearLayout {
         }
     }
 
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void showSchedule(StudentSchedule studentSchedule) {
         resetScheduleTable();
         int color_index = 0;
@@ -204,20 +224,13 @@ public class ScheduleTableLayout extends LinearLayout {
         int count = 0;
         for (ScheduleInfo item : studentSchedule.getScheduleList()) {
             boolean isHaveTime = false;
-            for (int i = 0; i < 7; i++) {
+            for (int i = 0; i < item.getTotalTimes(); i++) {
                 String time = item.getTimes()[i];
-                ArrayList<String> s = splitTime(time);
-                for (String t : s) {
-                    if (t.length() != 0) {
-                        int row = Integer.parseInt(t);
-                        int col = i + 1;
-                        isDisplayABCD = isDisplayABCD || row > 9;
-                        isDisplaySun = isDisplaySun || i == 6;
-                        isDisplaySat = isDisplaySat || i == 5;
-                        setTableCell(row, col, color_array[color_index], item);
-                        isHaveTime = true;
-                    }
-                }
+                splitTime(time);
+
+                setTableCell(rowPos, colPos, color_array[color_index], item);
+                isHaveTime = true;
+
             }
             if (!isHaveTime) {
                 count++;

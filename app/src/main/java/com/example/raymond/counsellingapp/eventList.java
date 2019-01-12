@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -169,8 +170,12 @@ public class eventList extends AppCompatActivity
                 startActivity(g);
                 break;
             case R.id.nav_signout:
-                Intent s= new Intent(eventList.this,aboutUs.class);
+                prefs = getSharedPreferences("user", MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.remove("user");
+                Intent s= new Intent(eventList.this,login.class);
                 startActivity(s);
+                Toast.makeText(eventList.this,"Successful Logout",Toast.LENGTH_LONG).show();
                 break;
         }
 

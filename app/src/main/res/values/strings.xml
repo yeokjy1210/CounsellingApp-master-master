@@ -114,4 +114,13 @@
     <string name="submit">Submit</string>
     <string name="desc_title">Description:</string>
     <string name="schedule_desc_guide">Write your problem here (Optional)</string>
+
+    <string name="no_account_yet">No account yet? \n [Click here to register now !]</string>
+    <string name="login">Login</string>
+    <string name="username">ID</string>
+    <string name="app_logo">app logo</string>
+
+    <string name="register">Register</string>
+    <string name="register_guide">Fill your details below !</string>
+
 </resources>

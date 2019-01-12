@@ -32,47 +32,13 @@ public class ScheduleTable extends AppCompatActivity {
         // Add schedule1 - sample1
         CustomScheduleInfo customScheduleInfo = new CustomScheduleInfo();
         customScheduleInfo.setName("Schedule 1");
-        customScheduleInfo.setScheduleTime("1 2", "", "2 3", "", "", "", "");
+        String[] schedule = {"Mon 18","Tue 10","Wed 12","Thu 14","Fri 16"};
+        customScheduleInfo.setScheduleTime(schedule);
         customScheduleInfo.setLocation("A101");
         customScheduleInfo.setStudent("Raymond Chua");
         customScheduleInfo.setCounselor("John Johny");
         ScheduleInfoList.add(customScheduleInfo);
 
-        // Add schedule1 - sample2
-        CustomScheduleInfo customScheduleInfo1 = new CustomScheduleInfo();
-        customScheduleInfo1.setName("Schedule 2");
-        customScheduleInfo1.setScheduleTime(new String[]{"4 ", "5 ", "", "", "", "", ""});
-        customScheduleInfo1.setLocation("B001");
-        customScheduleInfo1.setStudent("Chok Kah Yang");
-        customScheduleInfo1.setCounselor("Mia Khalifa");
-        ScheduleInfoList.add(customScheduleInfo1);
-
-        // Add schedule1 - sample3
-        CustomScheduleInfo customScheduleInfo2 = new CustomScheduleInfo();
-        customScheduleInfo2.setName("Schedule 3");
-        customScheduleInfo2.setScheduleTime("5 6", "3 4", "", "7 9", "", "", "");
-        customScheduleInfo2.setLocation("V002");
-        customScheduleInfo2.setStudent("Yeok Jia Ying");
-        customScheduleInfo2.setCounselor("Gaben");
-        ScheduleInfoList.add(customScheduleInfo2);
-
-        // Add schedule1 - sample4
-        CustomScheduleInfo customScheduleInfo3 = new CustomScheduleInfo();
-        customScheduleInfo3.setName("Schedule 4");
-        customScheduleInfo3.setScheduleTime("", "1 2", "", "", "5 6", "", "");
-        customScheduleInfo3.setLocation("A207");
-        customScheduleInfo3.setStudent("Darlie Toothpaste");
-        customScheduleInfo3.setCounselor("Colgate Master");
-        ScheduleInfoList.add(customScheduleInfo3);
-
-        // Add schedule1 - sample5
-        CustomScheduleInfo customScheduleInfo4 = new CustomScheduleInfo();
-        customScheduleInfo4.setName("Schedule 5");
-        customScheduleInfo4.setScheduleTime("7 8", "", "", "1 2", "", "", "");
-        customScheduleInfo4.setLocation("A301");
-        customScheduleInfo4.setStudent("Chan Wei Xiong");
-        customScheduleInfo4.setCounselor("Tan Zi Jian");
-        ScheduleInfoList.add(customScheduleInfo4);
 
         // Set timetable
         StudentSchedule.setScheduleList(ScheduleInfoList);

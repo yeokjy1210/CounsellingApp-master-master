@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class homepage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -77,6 +78,7 @@ public class homepage extends AppCompatActivity
             public void onClick(View v) {
                 Intent s= new Intent(homepage.this,eventList.class);
                 startActivity(s);            }
+
         });
 
 
@@ -138,8 +140,12 @@ public class homepage extends AppCompatActivity
                 startActivity(g);
                 break;
             case R.id.nav_signout:
-                Intent s= new Intent(homepage.this,aboutUs.class);
+                prefs = getSharedPreferences("user", MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.remove("user");
+                Intent s= new Intent(homepage.this,login.class);
                 startActivity(s);
+                Toast.makeText(homepage.this,"Successful Logout",Toast.LENGTH_LONG).show();
                 break;
         }
 

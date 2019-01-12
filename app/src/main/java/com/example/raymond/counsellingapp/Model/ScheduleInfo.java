@@ -12,6 +12,11 @@ public class ScheduleInfo {
         this.name = name;
     }
 
+    public int getTotalTimes(){
+        int result = times.length;
+        return result;
+    }
+
     public String[] getTimes() {
         return times;
     }

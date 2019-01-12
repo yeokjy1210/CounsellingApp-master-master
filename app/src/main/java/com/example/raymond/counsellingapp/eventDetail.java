@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class eventDetail extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -121,8 +122,12 @@ public class eventDetail extends AppCompatActivity
                 startActivity(g);
                 break;
             case R.id.nav_signout:
-                Intent s= new Intent(eventDetail.this,aboutUs.class);
+                prefs = getSharedPreferences("user", MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.remove("user");
+                Intent s= new Intent(eventDetail.this,login.class);
                 startActivity(s);
+                Toast.makeText(eventDetail.this,"Successful Logout",Toast.LENGTH_LONG).show();
                 break;
         }
 

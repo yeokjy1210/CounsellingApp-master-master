@@ -22,6 +22,7 @@ import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -161,8 +162,12 @@ public class SelectSchedule extends AppCompatActivity
                 startActivity(g);
                 break;
             case R.id.nav_signout:
-                Intent s= new Intent(SelectSchedule.this,aboutUs.class);
+                prefs = getSharedPreferences("user", MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.remove("user");
+                Intent s= new Intent(SelectSchedule.this,login.class);
                 startActivity(s);
+                Toast.makeText(SelectSchedule.this,"Successful Logout",Toast.LENGTH_LONG).show();
                 break;
         }
 

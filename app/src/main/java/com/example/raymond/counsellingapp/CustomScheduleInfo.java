@@ -6,7 +6,7 @@ public class CustomScheduleInfo extends ScheduleInfo {
     private String location;
     private String student;
     private String counselor;
-    
+
 
     public String getLocation() {
         return location;

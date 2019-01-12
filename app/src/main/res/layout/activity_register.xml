@@ -6,68 +6,84 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".register">
+    tools:context=".register"
+    android:background="@drawable/gradient_orange">
+
+    <TextView
+        android:id="@+id/register_header"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:text="@string/register_guide"
+        android:textSize="32sp"
+        android:textStyle="italic|bold"
+        android:textColor="@color/firebrick"
+
+        />
+
+    <EditText
+        android:id="@+id/text_input_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:hint="@string/full_name"
+        android:inputType="text" />
 
 
     <EditText
-            android:id="@+id/text_input_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/full_name"
-            android:inputType="text" />
+        android:id="@+id/text_input_Email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress" />
 
-
-        <EditText
-            android:id="@+id/text_input_Email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress" />
-
-        <EditText
-            android:id="@+id/text_input_stuID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/student_id_eg_1808528"
-            android:inputType="text" />
+    <EditText
+        android:id="@+id/text_input_stuID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/student_id_eg_1808528"
+        android:inputType="text" />
 
 
 
-        <EditText
-            android:id="@+id/text_input_stuDOB"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/student_dob"
-            android:clickable="true"
-            android:focusable="false" />
+    <EditText
+        android:id="@+id/text_input_stuDOB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/student_dob"
+        android:clickable="true"
+        android:focusable="false" />
 
-            <EditText
-            android:id="@+id/text_input_phoneNo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/phone_no"
-            android:inputType="phone" />
-
-
-            <EditText
-            android:id="@+id/text_input_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/password"
-            android:inputType="textPassword" />
+    <EditText
+        android:id="@+id/text_input_phoneNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/phone_no"
+        android:inputType="phone" />
 
 
-        <EditText
-            android:id="@+id/text_input_confirmPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/confirm_password"
-            android:inputType="textPassword" />
+    <EditText
+        android:id="@+id/text_input_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:inputType="textPassword" />
+
+
+    <EditText
+        android:id="@+id/text_input_confirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/confirm_password"
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/confirm" />
+        android:layout_marginTop="55dp"
+        android:background="@drawable/gradient_orangered"
+        android:text="@string/register"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 </LinearLayout>
