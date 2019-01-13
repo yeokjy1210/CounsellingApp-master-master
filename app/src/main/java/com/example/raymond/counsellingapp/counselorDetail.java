@@ -1,11 +1,11 @@
 package com.example.raymond.counsellingapp;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.util.Base64;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class counselorDetail extends AppCompatActivity
@@ -25,7 +26,8 @@ public class counselorDetail extends AppCompatActivity
     Toolbar toolbar = null;
     TextView txtStuName, txtStuEmail;
     private SharedPreferences prefs;
-    TextView name, dob, type, desc, contact, email,venue;
+    TextView name, age, type, desc, contact, email, venue, exp;
+    ImageView img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,32 +68,50 @@ public class counselorDetail extends AppCompatActivity
             }
         });
 
+        String idExtra = getIntent().getStringExtra("counselorID");
         String nameExtra = getIntent().getStringExtra("counselorName");
-        String dobExtra = getIntent().getStringExtra("counselorDOB");
+        int ageExtra = getIntent().getIntExtra("counselorAge", 0);
         String typeExtra = getIntent().getStringExtra("counselorType");
         String descExtra = getIntent().getStringExtra("counselorDesc");
         String contactExtra = getIntent().getStringExtra("counselorContact");
         String emailExtra = getIntent().getStringExtra("counselorEmail");
+        String imgExtra = getIntent().getStringExtra("counselorImage");
         String venueExtra = getIntent().getStringExtra("counselorVenue");
+        int expExtra = getIntent().getIntExtra("counselorExpYear", 0);
 
-        name = findViewById(R.id.textView_counselor_name);
-        dob = findViewById(R.id.textView_counselor_age);
-        type = findViewById(R.id.textView_counselor_type);
-        desc = findViewById(R.id.textView_counselor_desc);
-        contact = findViewById(R.id.textView_counselor_contact);
-        email = findViewById(R.id.textView_counselor_email);
-        venue = findViewById(R.id.textView_counselor_venue);
-
+        name = findViewById(R.id.txtName);
+        age = findViewById(R.id.txtAge);
+        type = findViewById(R.id.txtType);
+        desc = findViewById(R.id.txtDesc);
+        contact = findViewById(R.id.txtContact);
+        email = findViewById(R.id.txtEmail);
+        venue = findViewById(R.id.txtVenue);
+        exp = findViewById(R.id.txtExp);
+        img = findViewById(R.id.imgCounselor);
 
 
         name.setText(nameExtra);
-        dob.setText(dobExtra);
+        age.setText(ageExtra + "");
         type.setText(typeExtra);
         desc.setText(descExtra);
         contact.setText(contactExtra);
         email.setText(emailExtra);
         venue.setText(venueExtra);
+        exp.setText(expExtra + "");
+        showImage(imgExtra);
 
+    }
+
+    private void showImage(String image) {
+
+        byte[] decodedString = Base64.decode(image, Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString,
+                0, decodedString.length);
+        if (decodedByte != null) {
+            img.setImageBitmap(decodedByte);
+        } else {
+            img.setImageResource(R.drawable.hope_icon);
+        }
     }
 
     @Override

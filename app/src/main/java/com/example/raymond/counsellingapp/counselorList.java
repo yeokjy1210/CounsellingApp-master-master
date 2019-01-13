@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -25,6 +23,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -34,11 +33,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
 public class counselorList extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static String GET_URL = "http://counsellingapptarc.000webhostapp.com/androidphp/getCounselor.php";
+    private static String GET_URL = "http://10.0.2.2/ky/getCounselor.php";
     ListView mListView;
     RequestQueue queue;
     List<Counselor> counselorList;
@@ -95,22 +93,28 @@ public class counselorList extends AppCompatActivity
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 Intent intent = new Intent(getApplicationContext(), counselorDetail.class);
+                String id = counselorList.get(position).getCounselorID();
                 String name = counselorList.get(position).getCounselorName();
-                String dob = counselorList.get(position).getCounselorDOB();
+                int age = counselorList.get(position).getCounselorAge();
                 String type = counselorList.get(position).getCounselorType();
                 String desc = counselorList.get(position).getCounselorDesc();
                 String contact = counselorList.get(position).getCounselorContact();
                 String email = counselorList.get(position).getCounselorEmail();
+                String img = counselorList.get(position).getCounselorImg();
                 String venue = counselorList.get(position).getCounselorVenue();
+                int exp = counselorList.get(position).getCounselorExp();
 
 
+                intent.putExtra("counselorID", id);
                 intent.putExtra("counselorName", name);
-                intent.putExtra("counselorDOB", dob);
+                intent.putExtra("counselorAge", age);
                 intent.putExtra("counselorType", type);
                 intent.putExtra("counselorDesc", desc);
                 intent.putExtra("counselorContact", contact);
                 intent.putExtra("counselorEmail", email);
+                intent.putExtra("counselorImage", img);
                 intent.putExtra("counselorVenue", venue);
+                intent.putExtra("counselorExpYear", exp);
                 startActivity(intent);
             }
         });
@@ -193,29 +197,39 @@ public class counselorList extends AppCompatActivity
         // Instantiate the RequestQueue
         queue = Volley.newRequestQueue(context);
 
-        JsonArrayRequest jsonObjectRequest = new JsonArrayRequest(url,
-                new Response.Listener<JSONArray>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(JSONObject response) {
                         try {
-                            counselorList.clear();                         
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject eventObj = (JSONObject) response.get(i);
-                                String name = eventObj.getString("counselorName");
-                                String dob = eventObj.getString("counselorDOB");
-                                String type = eventObj.getString("counselorType");
-                                String desc = eventObj.getString("counselorDesc");
-                                String contact = eventObj.getString("counselorContact");
-                                String email = eventObj.getString("counselorEmail");
-                                String venue = eventObj.getString("counselorVenue");
+                            counselorList.clear();
+                            int msg = response.getInt("success");
 
-                                Counselor counselor = new Counselor(name, dob, type, desc, contact, email,venue);
-                                counselorList.add(counselor);
+                            if (msg == 1) {
+
+                                JSONArray responseCounselor = response.getJSONArray("counselor");
+                                for (int i = 0; i < responseCounselor.length(); i++) {
+                                    JSONObject counselorObj = responseCounselor.getJSONObject(i);
+                                    String id = counselorObj.getString("counselorID");
+                                    String name = counselorObj.getString("counselorName");
+                                    int age = counselorObj.getInt("counselorAge");
+                                    String type = counselorObj.getString("counselorType");
+                                    String desc = counselorObj.getString("counselorDesc");
+                                    String contact = counselorObj.getString("counselorContact");
+                                    String email = counselorObj.getString("counselorEmail");
+                                    String img = counselorObj.getString("counselorImage");
+                                    String venue = counselorObj.getString("counselorVenue");
+                                    int exp = counselorObj.getInt("counselorExpYear");
+
+                                    Counselor counselor = new Counselor(id, name, age, type, desc, contact, email, img, venue, exp);
+                                    counselorList.add(counselor);
+                                }
+                                loadCounselor();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Error: no data", Toast.LENGTH_LONG).show();
                             }
-                            loadEvent();
-
                         } catch (Exception e) {
-                            Toast.makeText(getApplicationContext(), "Error:" + e.getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Volley Error:" + e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 },
@@ -231,7 +245,7 @@ public class counselorList extends AppCompatActivity
         queue.add(jsonObjectRequest);
     }
 
-    public void loadEvent() {
+    public void loadCounselor() {
         final counselorAdapter adapter = new counselorAdapter(this, R.layout.content_counselor_list, counselorList);
         mListView.setAdapter(adapter);
         Toast.makeText(getApplicationContext(), "Count :" + counselorList.size(), Toast.LENGTH_LONG).show();

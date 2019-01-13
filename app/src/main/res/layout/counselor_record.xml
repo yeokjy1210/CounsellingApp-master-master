@@ -1,101 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout_counselorList"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/imgCounselor"
+        android:layout_width="120dp"
+        android:layout_height="140dp"
+        android:contentDescription="@string/desc_img_couns"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <TextView
+        android:id="@+id/txtName"
+        android:layout_width="264dp"
+        android:layout_height="33dp"
+        android:layout_alignParentStart="true"
+        android:layout_toEndOf="@+id/imgCounselor"
+        android:fontFamily="@font/allerta"
+        android:text="@string/name"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imgCounselor"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtAge"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="6dp"
-        android:background="@drawable/gradient_lush_green"
-        android:orientation="vertical">
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="192dp"
+        android:text="@string/age"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imgCounselor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:contentDescription="@string/eventDesc"
+    <TextView
+        android:id="@+id/txtDesc"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/description"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView_descTitle"
+        app:layout_constraintTop_toBottomOf="@+id/textView_yoeTitle" />
 
-            tools:srcCompat="@tools:sample/avatars" />
+    <TextView
+        android:id="@+id/txtVenue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/venue"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView_venueTitle"
+        app:layout_constraintTop_toBottomOf="@+id/textView_ageTitle" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="346dp"
-            android:orientation="vertical">
+    <TextView
+        android:id="@+id/textView_venueTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/venueTitle"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/txtYear"
+        app:layout_constraintTop_toBottomOf="@+id/textView_ageTitle" />
 
-            <TextView
-                android:id="@+id/txtCounselorName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:text="@string/name"
-                android:textAllCaps="true"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textView_ageTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/ageTitle"
 
-            <TextView
-                android:id="@+id/txtCounselorDOB"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:text="@string/age" />
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imgCounselor"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/txtCounselorType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical"
-                android:text="@string/counselorType" />
+    <TextView
+        android:id="@+id/textView_descTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/descTitle"
+        android:textSize="14sp"
+        android:textStyle="bold"
 
-            <TextView
-                android:id="@+id/txtCounselorDesc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/imgCounselor"
+        app:layout_constraintTop_toBottomOf="@+id/textView_yoeTitle" />
 
-                android:layout_gravity="left|center_vertical"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:text="@string/default_counselor_desc"
-                android:textSize="18sp"
-                android:textStyle="italic" />
+    <TextView
 
-            <TextView
-                android:id="@+id/txtCounselorAge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+        android:id="@+id/textView_yoeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/experience"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imgCounselor"
+        app:layout_constraintTop_toBottomOf="@+id/textView_ageTitle" />
 
-            <TextView
-                android:id="@+id/txtCounselorEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+    <TextView
+        android:id="@+id/txtYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/year"
+        app:layout_constraintStart_toEndOf="@+id/textView_yoeTitle"
+        app:layout_constraintTop_toBottomOf="@+id/textView_ageTitle" />
 
-            <TextView
-                android:id="@+id/txtCounselorContact"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/txtCounselorVenue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-        </LinearLayout>
-    </LinearLayout>
-
-</FrameLayout>
+</android.support.constraint.ConstraintLayout>

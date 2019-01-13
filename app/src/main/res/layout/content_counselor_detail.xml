@@ -24,7 +24,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
-                android:id="@+id/img_event_detail"
+                android:id="@+id/imgCounselor"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
                 android:contentDescription="@string/counselor_default_image"
@@ -69,7 +69,7 @@
 
                 <TextView
 
-                    android:id="@+id/textView_counselor_name"
+                    android:id="@+id/txtName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -119,8 +119,8 @@
                         android:layout_marginTop="8dp"
                         android:contentDescription="@string/counselor_contact_image"
                         android:src="@drawable/ic_contact"
-                        app:layout_constraintStart_toEndOf="@+id/textView_counselor_venue"
-                        app:layout_constraintTop_toBottomOf="@+id/textView_counselor_age"
+                        app:layout_constraintStart_toEndOf="@+id/txtVenue"
+                        app:layout_constraintTop_toBottomOf="@+id/txtAge"
                         tools:ignore="Suspicious0dp" />
 
                     <ImageView
@@ -189,7 +189,7 @@
                         android:textSize="14sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/image_contact"
-                        app:layout_constraintTop_toBottomOf="@+id/textView_counselor_age"
+                        app:layout_constraintTop_toBottomOf="@+id/txtAge"
                         tools:ignore="Suspicious0dp" />
 
                     <TextView
@@ -223,7 +223,7 @@
                         tools:ignore="Suspicious0dp" />
 
                     <TextView
-                        android:id="@+id/textView_counselor_age"
+                        android:id="@+id/txtAge"
                         android:layout_width="93dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
@@ -238,7 +238,7 @@
                         tools:ignore="Suspicious0dp" />
 
                     <TextView
-                        android:id="@+id/textView_counselor_venue"
+                        android:id="@+id/txtVenue"
                         android:layout_width="83dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
@@ -249,11 +249,11 @@
                         android:textSize="14sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/venueTitle"
-                        app:layout_constraintTop_toBottomOf="@+id/textView_counselor_age"
+                        app:layout_constraintTop_toBottomOf="@+id/txtAge"
                         tools:ignore="Suspicious0dp" />
 
                     <TextView
-                        android:id="@+id/textView_counselor_contact"
+                        android:id="@+id/txtContact"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
@@ -264,11 +264,11 @@
                         android:textSize="14sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/contactTitle"
-                        app:layout_constraintTop_toBottomOf="@+id/textView_counselor_yoe"
+                        app:layout_constraintTop_toBottomOf="@+id/txtExp"
                         tools:ignore="Suspicious0dp" />
 
                     <TextView
-                        android:id="@+id/textView_counselor_email"
+                        android:id="@+id/txtEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
@@ -279,11 +279,11 @@
                         android:textSize="14sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/emailTitle"
-                        app:layout_constraintTop_toBottomOf="@+id/textView_counselor_venue"
+                        app:layout_constraintTop_toBottomOf="@+id/txtVenue"
                         tools:ignore="Suspicious0dp" />
 
                     <TextView
-                        android:id="@+id/textView_counselor_type"
+                        android:id="@+id/txtType"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
@@ -294,7 +294,7 @@
                         android:textSize="14sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/typeTitle"
-                        app:layout_constraintTop_toBottomOf="@+id/textView_counselor_email"
+                        app:layout_constraintTop_toBottomOf="@+id/txtEmail"
                         tools:ignore="Suspicious0dp" />
 
                     <ImageView
@@ -305,7 +305,7 @@
                         android:layout_marginTop="8dp"
                         android:contentDescription="@string/yearImage"
                         android:src="@drawable/year_vector"
-                        app:layout_constraintStart_toEndOf="@+id/textView_counselor_age"
+                        app:layout_constraintStart_toEndOf="@+id/txtAge"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="Suspicious0dp" />
 
@@ -325,7 +325,7 @@
                         tools:ignore="Suspicious0dp" />
 
                     <TextView
-                        android:id="@+id/textView_counselor_yoe"
+                        android:id="@+id/txtExp"
                         android:layout_width="82dp"
                         android:layout_height="44dp"
                         android:layout_marginStart="2dp"
@@ -344,7 +344,7 @@
 
                 <TextView
 
-                    android:id="@+id/textView_counselor_desc"
+                    android:id="@+id/txtDesc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"

@@ -105,7 +105,6 @@
     <string name="student_dob">Student DOB</string>
     <string name="phone_no">Phone No.</string>
     <string name="confirm_password">Confirm Password</string>
-    <string name="title_activity_user_profile">userProfile</string>
 
     <string name="select_schedule">Select A Schedule</string>
     <string name="counselor_name_title">Counselor Name :</string>

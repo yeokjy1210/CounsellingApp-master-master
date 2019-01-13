@@ -37,7 +37,7 @@ public class register extends AppCompatActivity {
     ProgressDialog progressDialog;
 
     private static final String TAG = "register";
-    private static final String URL_FOR_REGISTRATION = "http://counsellingapptarc.000webhostapp.com/androidphp/insertStudent.php";
+    private static final String URL_FOR_REGISTRATION = "http://10.0.2.2/ky/insertStudent.php";
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
                     "(?=.*[a-zA-Z])" +      //any letter
@@ -143,12 +143,16 @@ public class register extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+            if(!validateEmail()|!validatePassword()|!Is_Valid_Person_Name(textInputName)|!Is_Valid_number(textInputUserID)){
+                return;
+            }else {
                 registerUser(textInputUserID.getText().toString(),
                         textInputPassword.getText().toString(),
                         textInputName.getText().toString(),
+                        textInputPhoneNo.getText().toString(),
                         textInputEmail.getText().toString(),
                         textInputDOB.getText().toString());
+            }
 
             }
         });
@@ -174,6 +178,9 @@ public class register extends AppCompatActivity {
     public boolean Is_Valid_number(EditText edt) throws NumberFormatException {
         if (edt.getText().toString().length() <= 0) {
             edt.setError("Field cannot be empty.");
+            if (textInputPhoneNo.getText().toString().length() <= 0) {
+                textInputPhoneNo.setError("Field cannot be empty.");
+            }
             return false;
         } else if (!edt.getText().toString().matches("(?<=\\s|^)\\d+(?=\\s|$)")) {
             edt.setError("Accept Integer Only.");
@@ -236,7 +243,7 @@ public class register extends AppCompatActivity {
     }
 
     private void registerUser(final String id, final String password, final String name,
-                              final String email, final String dob) {
+                              final String phone, final String email, final String dob) {
 
         progressDialog.setMessage("Adding You...");
         showDialog();
@@ -284,6 +291,7 @@ public class register extends AppCompatActivity {
                 params.put("studentID", id);
                 params.put("studentPass", password);
                 params.put("studentName", name);
+                params.put("studentPhone", phone);
                 params.put("studentEmail", email);
                 params.put("studentDOB", dob);
                 return params;

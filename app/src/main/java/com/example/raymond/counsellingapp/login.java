@@ -33,7 +33,7 @@ import java.util.Map;
 public class login extends AppCompatActivity {
 
     private static final String TAG = "login";
-    private static final String URL_FOR_LOGIN = "http://counsellingapptarc.000webhostapp.com/androidphp/getStudent.php";
+    private static final String URL_FOR_LOGIN = "http://10.0.2.2/ky/getStudent.php";
     private EditText textInputUserID;
     private EditText textInputPassword;
     private TextView textInputRegister;
@@ -107,6 +107,7 @@ public class login extends AppCompatActivity {
                                 studentJson.getString("studentID"),
                                 studentJson.getString("studentPass"),
                                 studentJson.getString("studentName"),
+                                studentJson.getString("studentPhone"),
                                 studentJson.getString("studentEmail"),
                                 studentJson.getString("studentDOB")
                         );
@@ -115,6 +116,7 @@ public class login extends AppCompatActivity {
                         editor.putString("studentID", student.getStudentID());
                         editor.putString("studentPass", student.getStudentPass());
                         editor.putString("studentName", student.getStudentName());
+                        editor.putString("studentPhone", student.getStudentPhone());
                         editor.putString("studentEmail", student.getStudentEmail());
                         editor.putString("studentDOB", student.getStudentDOB());
                         editor.apply();

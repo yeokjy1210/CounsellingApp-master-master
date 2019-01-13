@@ -5,27 +5,18 @@ public class Student {
     private String studentID;
     private String studentPass;
     private String studentName;
+    private String studentPhone;
     private String studentEmail;
     private String studentDOB;
 
-    public Student(){
 
-    }
-
-    public Student(String studentID, String studentPass, String studentName, String studentEmail, String studentDOB) {
+    public Student(String studentID, String studentPass, String studentName, String studentPhone, String studentEmail, String studentDOB) {
         this.studentID = studentID;
         this.studentPass = studentPass;
         this.studentName = studentName;
+        this.studentPhone = studentPhone;
         this.studentEmail = studentEmail;
         this.studentDOB = studentDOB;
-    }
-
-    public void setStudentID(String studentID) {
-        this.studentID = studentID;
-    }
-
-    public void setStudentPass(String studentPass) {
-        this.studentPass = studentPass;
     }
 
     public void setStudentName(String studentName) {
@@ -34,10 +25,6 @@ public class Student {
 
     public void setStudentEmail(String studentEmail) {
         this.studentEmail = studentEmail;
-    }
-
-    public void setStudentDOB(String studentDOB) {
-        this.studentDOB = studentDOB;
     }
 
     public String getStudentID() {
@@ -51,6 +38,8 @@ public class Student {
     public String getStudentName() {
         return studentName;
     }
+
+    public String getStudentPhone(){ return studentPhone;}
 
     public String getStudentEmail() {
         return studentEmail;

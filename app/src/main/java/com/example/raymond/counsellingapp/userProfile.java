@@ -75,14 +75,14 @@ public class userProfile extends AppCompatActivity
 
         contentStuName.setText(prefs.getString("studentName","No name"));
         contentStuEmail.setText(prefs.getString("studentEmail","No email"));
-        contentStuPhone.setText(prefs.getString("studentDOB","No dob"));
+        contentStuPhone.setText(prefs.getString("studentPhone","No Phone No"));
         contentDOB.setText(prefs.getString("studentDOB","No dob"));
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intentZ= new Intent(userProfile.this,updateProfile.class);
-                startActivity(intentZ);            
+                startActivity(intentZ);
             }
         });
     }
