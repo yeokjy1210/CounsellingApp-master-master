@@ -1,5 +1,6 @@
 package com.example.raymond.counsellingapp;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,27 +16,27 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class eventDetail extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawer;
     NavigationView navigationView;
-    Toolbar toolbar=null;
+    Toolbar toolbar = null;
     TextView txtStuName, txtStuEmail;
     private SharedPreferences prefs;
+    TextView name, desc, date, time, venue, fee;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
-        int position = intent.getIntExtra("position",0);
-
         setContentView(R.layout.activity_event_detail);
+
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Event Detail");
         setSupportActionBar(toolbar);
-        if(getSupportActionBar()!=null)
+        if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -51,18 +52,41 @@ public class eventDetail extends AppCompatActivity
         txtStuName = headerView.findViewById(R.id.txtStuName);
         txtStuEmail = headerView.findViewById(R.id.txtStuEmail);
         prefs = getSharedPreferences("user", MODE_PRIVATE);
-        String restoredText = prefs.getString("studentName",null);
-        if(restoredText !=null){
-            txtStuName.setText(prefs.getString("studentName","No name"));
-            txtStuEmail.setText(prefs.getString("studentEmail","No email"));
+        String restoredText = prefs.getString("studentName", null);
+        if (restoredText != null) {
+            txtStuName.setText(prefs.getString("studentName", "No name"));
+            txtStuEmail.setText(prefs.getString("studentEmail", "No email"));
         }
 
         headerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent s= new Intent(eventDetail.this,userProfile.class);
-                startActivity(s);            }
+                Intent s = new Intent(eventDetail.this, userProfile.class);
+                startActivity(s);
+            }
         });
+
+
+        String nameExtra = getIntent().getStringExtra("eventName");
+        String descExtra = getIntent().getStringExtra("eventDesc");
+        String dateExtra = getIntent().getStringExtra("eventDate");
+        String timeExtra = getIntent().getStringExtra("eventTime");
+        String venueExtra = getIntent().getStringExtra("eventVenue");
+        int feeExtra = getIntent().getIntExtra("eventFee", 0);
+        name = findViewById(R.id.txtName);
+        desc = findViewById(R.id.txtDesc);
+        date = findViewById(R.id.txtDate);
+        time = findViewById(R.id.txtTime);
+        venue = findViewById(R.id.txtVenue);
+        fee = findViewById(R.id.txtFee);
+
+        name.setText(nameExtra);
+        desc.setText(descExtra);
+        date.setText(dateExtra);
+        time.setText(timeExtra);
+        venue.setText(venueExtra);
+        fee.setText("" + feeExtra);
+
     }
 
     @Override
@@ -103,31 +127,27 @@ public class eventDetail extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        switch (id){
+        switch (id) {
 
             case R.id.nav_homepage:
-                Intent h= new Intent(eventDetail.this,homepage.class);
+                Intent h = new Intent(eventDetail.this, homepage.class);
                 startActivity(h);
                 break;
             case R.id.nav_counselor:
-                Intent z= new Intent(eventDetail.this,counselorList.class);
+                Intent z = new Intent(eventDetail.this, counselorList.class);
                 startActivity(z);
                 break;
             case R.id.nav_event:
-                Intent i= new Intent(eventDetail.this,eventList.class);
+                Intent i = new Intent(eventDetail.this, eventList.class);
                 startActivity(i);
                 break;
             case R.id.nav_aboutus:
-                Intent g= new Intent(eventDetail.this,aboutUs.class);
+                Intent g = new Intent(eventDetail.this, aboutUs.class);
                 startActivity(g);
                 break;
             case R.id.nav_signout:
-                prefs = getSharedPreferences("user", MODE_PRIVATE);
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.remove("user");
-                Intent s= new Intent(eventDetail.this,login.class);
+                Intent s = new Intent(eventDetail.this, aboutUs.class);
                 startActivity(s);
-                Toast.makeText(eventDetail.this,"Successful Logout",Toast.LENGTH_LONG).show();
                 break;
         }
 

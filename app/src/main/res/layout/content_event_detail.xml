@@ -68,8 +68,7 @@
                 android:orientation="vertical">
 
                 <TextView
-
-                    android:id="@+id/textView_counselor_name"
+                    android:id="@+id/txtName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -168,7 +167,7 @@
                         tools:ignore="Suspicious0dp" />
 
                     <TextView
-                        android:id="@+id/textView_counselor_age"
+                        android:id="@+id/txtDate"
                         android:layout_width="141dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
@@ -183,7 +182,7 @@
                         tools:ignore="Suspicious0dp" />
 
                     <TextView
-                        android:id="@+id/textView_counselor_venue"
+                        android:id="@+id/txtTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
@@ -194,11 +193,11 @@
                         android:textSize="14sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/venueTitle"
-                        app:layout_constraintTop_toBottomOf="@+id/textView_counselor_age"
+                        app:layout_constraintTop_toBottomOf="@+id/txtDate"
                         tools:ignore="Suspicious0dp" />
 
                     <TextView
-                        android:id="@+id/textView_counselor_contact"
+                        android:id="@+id/txtVenue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
@@ -209,7 +208,7 @@
                         android:textSize="14sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/contactTitle"
-                        app:layout_constraintTop_toBottomOf="@+id/textView_counselor_venue"
+                        app:layout_constraintTop_toBottomOf="@+id/txtTime"
                         tools:ignore="Suspicious0dp" />
 
                     <ImageView
@@ -220,7 +219,7 @@
                         android:layout_marginTop="8dp"
                         android:contentDescription="@string/dollar_image"
                         android:src="@drawable/ic_dollar"
-                        app:layout_constraintStart_toEndOf="@+id/textView_counselor_age"
+                        app:layout_constraintStart_toEndOf="@+id/txtDate"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="Suspicious0dp" />
 
@@ -240,7 +239,7 @@
                         tools:ignore="Suspicious0dp" />
 
                     <TextView
-                        android:id="@+id/textView_counselor_yoe"
+                        android:id="@+id/txtFee"
                         android:layout_width="82dp"
                         android:layout_height="44dp"
                         android:layout_marginStart="2dp"
@@ -257,7 +256,7 @@
 
                 <TextView
 
-                    android:id="@+id/textView_counselor_desc"
+                    android:id="@+id/txtDesc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"

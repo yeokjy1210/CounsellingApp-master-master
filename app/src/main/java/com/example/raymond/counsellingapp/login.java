@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -35,16 +36,32 @@ public class login extends AppCompatActivity {
     private static final String URL_FOR_LOGIN = "http://counsellingapptarc.000webhostapp.com/androidphp/getStudent.php";
     private EditText textInputUserID;
     private EditText textInputPassword;
+    private TextView textInputRegister;
     private Button btnLogin;
+
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+
         textInputUserID = findViewById(R.id.text_input_loginId);
         textInputPassword = findViewById(R.id.text_input_password);
+        textInputRegister = findViewById(R.id. text_no_account);
         btnLogin = findViewById(R.id.btn_login);
+
+        textInputRegister.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent s = new Intent(login.this, register.class);
+                startActivity(s);
+            }
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
 
@@ -64,27 +81,25 @@ public class login extends AppCompatActivity {
     }
 
     private void loginUser(final String userID, final String password) {
+        progressDialog.setMessage("Logging In");
+        showDialog();
         // Tag used to cancel the request
-
-
         StringRequest strReq = new StringRequest(Request.Method.POST,
                 URL_FOR_LOGIN, new Response.Listener<String>() {
-
             @Override
             public void onResponse(String response) {
                 Log.d(TAG, "Login Response: " + response);
-
+                hideDialog();
                 try {
                     JSONObject jObj = new JSONObject(response);
                     int success = jObj.getInt("success");
-                    JSONObject studentJson = jObj.getJSONObject("user");
+                    String msg = jObj.getString("message");
                     if (success == 1) {
-
-
+                        JSONObject studentJson = jObj.getJSONObject("user");
                         Intent intent = new Intent(login.this, homepage.class);
                         startActivity(intent);
 
-                        Toast.makeText(login.this, "Success Login.\n Your Name: " +
+                        Toast.makeText(login.this, msg + "\n Your Name: " +
                                 studentJson.getString("studentName") + "\n Your Email: " +
                                 studentJson.getString("studentEmail"), Toast.LENGTH_SHORT).show();
 
@@ -103,15 +118,12 @@ public class login extends AppCompatActivity {
                         editor.putString("studentEmail", student.getStudentEmail());
                         editor.putString("studentDOB", student.getStudentDOB());
                         editor.apply();
-
                     } else
-                        Toast.makeText(login.this, "Login.\n Your Name: ", Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(login.this, msg , Toast.LENGTH_SHORT).show();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Toast.makeText(login.this, "Error " + e.toString(), Toast.LENGTH_SHORT).show();
-
                 }
 
             }
@@ -120,7 +132,9 @@ public class login extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Login Error: " + error.getMessage());
                 Toast.makeText(login.this, "Error " + error.toString(), Toast.LENGTH_SHORT).show();
-
+                hideDialog();
+                textInputUserID.getText().clear();
+                textInputPassword.getText().clear();
             }
         }) {
             @Override
@@ -137,4 +151,13 @@ public class login extends AppCompatActivity {
         requestQueue.add(strReq);
     }
 
+    private void showDialog() {
+        if (!progressDialog.isShowing())
+            progressDialog.show();
+    }
+
+    private void hideDialog() {
+        if (progressDialog.isShowing())
+            progressDialog.dismiss();
+    }
 }

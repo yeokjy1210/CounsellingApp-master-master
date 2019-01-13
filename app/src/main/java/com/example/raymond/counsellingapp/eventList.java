@@ -1,5 +1,6 @@
 package com.example.raymond.counsellingapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,6 +21,16 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,17 +39,16 @@ import java.util.List;
 public class eventList extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static String GET_URL = "http://counsellingapptarc.000webhostapp.com/androidphp/getEvent.php";
+    ListView mListView;
+    RequestQueue queue;
+    List<Event> eventList;
+
     DrawerLayout drawer;
     NavigationView navigationView;
-    Toolbar toolbar=null;
+    Toolbar toolbar = null;
     TextView txtStuName, txtStuEmail;
     private SharedPreferences prefs;
-
-    int[] images = new int[]{R.drawable.event_photo1,R.drawable.event_photo2,R.drawable.event_photo3,R.drawable.event_photo4,R.drawable.event_photo5};
-    String[] eventTitle = new String[]{"Never Give Up","Just Do It","You Da Best","Bright Future","Big Family"};
-
-    ArrayList<HashMap<String,String>> data = new ArrayList<>();
-    SimpleAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +57,8 @@ public class eventList extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Event");
         setSupportActionBar(toolbar);
-        if(getSupportActionBar()!=null)
+        if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -64,44 +73,41 @@ public class eventList extends AppCompatActivity
         txtStuName = headerView.findViewById(R.id.txtStuName);
         txtStuEmail = headerView.findViewById(R.id.txtStuEmail);
         prefs = getSharedPreferences("user", MODE_PRIVATE);
-        String restoredText = prefs.getString("studentName",null);
-        if(restoredText !=null){
-            txtStuName.setText(prefs.getString("studentName","No name"));
-            txtStuEmail.setText(prefs.getString("studentEmail","No email"));
+        String restoredText = prefs.getString("studentName", null);
+        if (restoredText != null) {
+            txtStuName.setText(prefs.getString("studentName", "No name"));
+            txtStuEmail.setText(prefs.getString("studentEmail", "No email"));
         }
 
         headerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent s= new Intent(eventList.this,userProfile.class);
-                startActivity(s);            }
+                Intent s = new Intent(eventList.this, userProfile.class);
+                startActivity(s);
+            }
         });
 
-        List<HashMap<String,String>> aList = new ArrayList<HashMap<String, String>>();
-        for(int i=0;i<images.length;i++){
-            HashMap<String,String> hm= new HashMap<String,String>();
-            hm.put("imagesKey",Integer.toString(images[i]));
-            hm.put("eventTitleKey",eventTitle[i]);
-            aList.add(hm);
-        }
-        String[] from ={
-                "imagesKey","eventTitleKey"
-        };
-        int[] to= {
-                R.id.event_image,R.id.event_title
-        };
 
-        SimpleAdapter simpleAdapter = new SimpleAdapter(getBaseContext(),aList,R.layout.event_list_item,from,to);
-        ListView mListView = (ListView)findViewById(R.id.eventList);
-        mListView.setAdapter(simpleAdapter);
+        mListView = findViewById(R.id.eventList);
+        eventList = new ArrayList<>();
 
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3)
-            {
+        getEvent(getApplicationContext(), GET_URL);
 
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 Intent intent = new Intent(getApplicationContext(), eventDetail.class);
-                intent.putExtra("position", position);
+                String name = eventList.get(position).getEventName();
+                String desc = eventList.get(position).getEventDesc();
+                String date = eventList.get(position).getEventDate();
+                String time = eventList.get(position).getEventTime();
+                String venue = eventList.get(position).getEventVenue();
+                int fee = eventList.get(position).getEventFee();
+                intent.putExtra("eventName", name);
+                intent.putExtra("eventDesc", desc);
+                intent.putExtra("eventDate", date);
+                intent.putExtra("eventTime", time);
+                intent.putExtra("eventVenue", venue);
+                intent.putExtra("eventFee", fee);
                 startActivity(intent);
             }
         });
@@ -151,36 +157,84 @@ public class eventList extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        switch (id){
+        switch (id) {
 
             case R.id.nav_homepage:
-                Intent h= new Intent(eventList.this,homepage.class);
+                Intent h = new Intent(eventList.this, homepage.class);
                 startActivity(h);
                 break;
             case R.id.nav_counselor:
-                Intent z= new Intent(eventList.this,counselorList.class);
+                Intent z = new Intent(eventList.this, counselorList.class);
                 startActivity(z);
                 break;
             case R.id.nav_event:
-                Intent i= new Intent(eventList.this,eventList.class);
+                Intent i = new Intent(eventList.this, eventList.class);
                 startActivity(i);
                 break;
             case R.id.nav_aboutus:
-                Intent g= new Intent(eventList.this,aboutUs.class);
+                Intent g = new Intent(eventList.this, aboutUs.class);
                 startActivity(g);
                 break;
             case R.id.nav_signout:
-                prefs = getSharedPreferences("user", MODE_PRIVATE);
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.remove("user");
-                Intent s= new Intent(eventList.this,login.class);
+                Intent s = new Intent(eventList.this, aboutUs.class);
                 startActivity(s);
-                Toast.makeText(eventList.this,"Successful Logout",Toast.LENGTH_LONG).show();
                 break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void getEvent(Context context, String url) {
+        // Instantiate the RequestQueue
+        queue = Volley.newRequestQueue(context);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            eventList.clear();
+                            int msg = response.getInt("success");
+
+                            if (msg == 1) {
+                                JSONArray responseEvent = response.getJSONArray("event");
+                                for (int i = 0; i < responseEvent.length(); i++) {
+                                    JSONObject eventObj = responseEvent.getJSONObject(i);
+                                    String name = eventObj.getString("eventName");
+                                    String desc = eventObj.getString("eventDesc");
+                                    String date = eventObj.getString("eventDate");
+                                    String time = eventObj.getString("eventTime");
+                                    String venue = eventObj.getString("eventVenue");
+                                    int fee = eventObj.getInt("eventFee");
+                                    Event event = new Event(name, desc, date, time, venue, fee);
+                                    eventList.add(event);
+                                }
+                                loadEvent();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Error: no data", Toast.LENGTH_LONG).show();
+                            }
+                        } catch (Exception e) {
+                            Toast.makeText(getApplicationContext(), "Error:" + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(getApplicationContext(), "Error: " + volleyError.getMessage(), Toast.LENGTH_LONG).show();
+
+                    }
+                });
+
+        // Add the request to the RequestQueue.
+        queue.add(jsonObjectRequest);
+    }
+
+    public void loadEvent() {
+        final eventAdapter adapter = new eventAdapter(this, R.layout.content_event_list, eventList);
+        mListView.setAdapter(adapter);
+        Toast.makeText(getApplicationContext(), "Count :" + eventList.size(), Toast.LENGTH_LONG).show();
     }
 }

@@ -1,89 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_orange"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".register"
-    android:background="@drawable/gradient_orange">
+    tools:context=".register">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <TextView
         android:id="@+id/register_header"
         android:layout_width="wrap_content"
         android:layout_height="75dp"
         android:text="@string/register_guide"
+        android:textColor="@color/firebrick"
         android:textSize="32sp"
         android:textStyle="italic|bold"
-        android:textColor="@color/firebrick"
 
         />
 
-    <EditText
-        android:id="@+id/text_input_name"
+
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="wrap_content">
 
-        android:hint="@string/full_name"
-        android:inputType="text" />
+        <EditText
+            android:id="@+id/text_input_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
+            android:hint="@string/full_name"
+            android:inputType="text" />
 
-    <EditText
-        android:id="@+id/text_input_Email"
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress" />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/text_input_stuID"
+        <EditText
+            android:id="@+id/text_input_Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/student_id_eg_1808528"
-        android:inputType="text" />
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/text_input_stuID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/student_id_eg_1808528"
+            android:inputType="number" />
 
 
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/text_input_stuDOB"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/student_dob"
-        android:clickable="true"
-        android:focusable="false" />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/text_input_phoneNo"
+        <EditText
+            android:id="@+id/text_input_stuDOB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="@string/student_dob" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/phone_no"
-        android:inputType="phone" />
+        android:layout_height="wrap_content">
 
+        <EditText
+            android:id="@+id/text_input_phoneNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone_no"
+            android:maxLength="13"
+            android:inputType="phone" />
 
-    <EditText
-        android:id="@+id/text_input_password"
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/password"
-        android:inputType="textPassword" />
+        android:layout_height="wrap_content">
 
+        <EditText
+            android:id="@+id/text_input_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:inputType="textPassword" />
 
-    <EditText
-        android:id="@+id/text_input_confirmPassword"
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/confirm_password"
-        android:inputType="textPassword" />
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
-        android:background="@drawable/gradient_orangered"
-        android:text="@string/register"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-</LinearLayout>
+        <EditText
+            android:id="@+id/text_input_confirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/confirm_password"
+            android:inputType="textPassword" />
+    </android.support.design.widget.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/gradient_orangered"
+            android:text="@string/register"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/gradient_orangered"
+            android:text="@string/cancel"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

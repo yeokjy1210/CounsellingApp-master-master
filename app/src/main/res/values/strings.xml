@@ -119,8 +119,14 @@
     <string name="login">Login</string>
     <string name="username">ID</string>
     <string name="app_logo">app logo</string>
+    <string name="counselling">View Schedule</string>
+    <string name="eventRegisted">View Event</string>
 
     <string name="register">Register</string>
     <string name="register_guide">Fill your details below !</string>
+    <string name="change_picture">Change Photo</string>
+    <string name="cancel">Cancel</string>
+    <string name="dob">Date of Birth</string>
+    <string name="updateProfile">Update Profile</string>
 
 </resources>

@@ -14,27 +14,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class userProfile extends AppCompatActivity
+public class updateProfile extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawer;
     NavigationView navigationView;
     Toolbar toolbar=null;
-    ImageView imgStuView;
-    TextView txtStuName, txtStuEmail,contentStuName,contentStuEmail,contentStuPhone,contentDOB;
+    TextView txtStuName, txtStuEmail;
     private SharedPreferences prefs;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profile);
+        setContentView(R.layout.activity_update_profile);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Profile");
+        toolbar.setTitle("Update Profile");
         setSupportActionBar(toolbar);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -51,24 +48,22 @@ public class userProfile extends AppCompatActivity
         txtStuName = headerView.findViewById(R.id.txtStuName);
         txtStuEmail = headerView.findViewById(R.id.txtStuEmail);
         prefs = getSharedPreferences("user", MODE_PRIVATE);
-        String restoredText = prefs.getString("studentName",null);
-        if(restoredText !=null){
-            txtStuName.setText(prefs.getString("studentName","No name"));
-            txtStuEmail.setText(prefs.getString("studentEmail","No email"));
+        String restoredText = prefs.getString("studentName", null);
+        if (restoredText != null) {
+            txtStuName.setText(prefs.getString("studentName", "No name"));
+            txtStuEmail.setText(prefs.getString("studentEmail", "No email"));
         }
 
-        contentStuName = findViewById(R.id.userName);
-        contentStuEmail = findViewById(R.id.userEmail);
-        contentStuPhone = findViewById(R.id.userPhone);
-        contentDOB = findViewById(R.id.userDOB);
-
-        contentStuName.setText(prefs.getString("studentName","No name"));
-        contentStuEmail.setText(prefs.getString("studentEmail","No email"));
-        contentStuPhone.setText(prefs.getString("studentDOB","No dob"));
-        contentDOB.setText(prefs.getString("studentDOB","No dob"));
-
+        headerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent s = new Intent(updateProfile.this, userProfile.class);
+                startActivity(s);
+            }
+        });
 
     }
+
 
     @Override
     public void onBackPressed() {
@@ -111,28 +106,28 @@ public class userProfile extends AppCompatActivity
         switch (id){
 
             case R.id.nav_homepage:
-                Intent h= new Intent(userProfile.this,homepage.class);
+                Intent h= new Intent(updateProfile.this,homepage.class);
                 startActivity(h);
                 break;
             case R.id.nav_counselor:
-                Intent z= new Intent(userProfile.this,counselorList.class);
+                Intent z= new Intent(updateProfile.this,counselorList.class);
                 startActivity(z);
                 break;
             case R.id.nav_event:
-                Intent i= new Intent(userProfile.this,eventList.class);
+                Intent i= new Intent(updateProfile.this,eventList.class);
                 startActivity(i);
                 break;
             case R.id.nav_aboutus:
-                Intent g= new Intent(userProfile.this,aboutUs.class);
+                Intent g= new Intent(updateProfile.this,aboutUs.class);
                 startActivity(g);
                 break;
             case R.id.nav_signout:
                 prefs = getSharedPreferences("user", MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.remove("user");
-                Intent s= new Intent(userProfile.this,login.class);
+                Intent s= new Intent(updateProfile.this,login.class);
                 startActivity(s);
-                Toast.makeText(userProfile.this,"Successful Logout",Toast.LENGTH_LONG).show();
+                Toast.makeText(updateProfile.this,"Successful Logout",Toast.LENGTH_LONG).show();
                 break;
         }
 
