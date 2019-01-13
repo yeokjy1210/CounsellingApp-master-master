@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -68,7 +69,7 @@ public class counselorDetail extends AppCompatActivity
             }
         });
 
-        String idExtra = getIntent().getStringExtra("counselorID");
+        final String idExtra = getIntent().getStringExtra("counselorID");
         String nameExtra = getIntent().getStringExtra("counselorName");
         int ageExtra = getIntent().getIntExtra("counselorAge", 0);
         String typeExtra = getIntent().getStringExtra("counselorType");
@@ -100,6 +101,20 @@ public class counselorDetail extends AppCompatActivity
         exp.setText(expExtra + "");
         showImage(imgExtra);
 
+        Button btnReg = findViewById(R.id.btnRegister);
+        btnReg.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent i = new Intent(counselorDetail.this, SelectSchedule.class);
+                startActivity(i);
+
+                SharedPreferences.Editor editor = getSharedPreferences("counselor", MODE_PRIVATE).edit();
+                editor.putString("counselorID", idExtra);
+                editor.apply();
+            }
+        });
     }
 
     private void showImage(String image) {

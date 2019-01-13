@@ -28,6 +28,7 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -54,6 +55,7 @@ public class register extends AppCompatActivity {
 
     final Calendar myCalendar = Calendar.getInstance();
     private DatePickerDialog.OnDateSetListener date;
+
     private EditText textInputDOB;
 
     private int keyDel;
@@ -116,7 +118,6 @@ public class register extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
-
         date = new DatePickerDialog.OnDateSetListener() {
 
             @Override
@@ -135,7 +136,14 @@ public class register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                new DatePickerDialog(register.this, date, 2000,0,1).show();
+                Date d=new Date();
+                DatePickerDialog dialog =  new DatePickerDialog(register.this, date, 2000,0,1);
+                Calendar cal=Calendar.getInstance();
+                cal.set(2000, 11, 31, 0, 0);
+                d.setTime(cal.getTimeInMillis());
+                dialog.getDatePicker().setMaxDate(d.getTime());
+                dialog.show();
+
             }
         });
 
@@ -228,7 +236,7 @@ public class register extends AppCompatActivity {
             textInputPassword.setError("Field can't be empty");
             return false;
         } else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()) {
-            textInputPassword.setError("Password too weak");
+            textInputPassword.setError("Password too weak (At least one digit,one alphabet and 4 characters)");
             return false;
         } else if (passwordInput1.isEmpty()) {
             textInputConfirmPassword.setError("Field can't be empty");

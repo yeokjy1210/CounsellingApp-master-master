@@ -49,8 +49,10 @@
         android:id="@+id/textView12"
         android:layout_width="0dp"
         android:layout_height="90dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
         android:text="@string/select_schedule"
-        android:textSize="45sp"
+        android:textSize="43sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,18 +70,6 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btn_pick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/pick"
-        android:textColor="@color/blanchedalmond"
-        android:background="@drawable/gradient_orangered"
-        app:layout_constraintStart_toEndOf="@+id/textView_dateTime"
-        app:layout_constraintTop_toBottomOf="@+id/textView_counselorName" />
 
     <TextView
         android:id="@+id/textView_schedule_desc"
@@ -112,5 +102,20 @@
             android:inputType="text" />
 
     </android.support.design.widget.TextInputLayout>
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toEndOf="@+id/textView_dateTime"
+        app:layout_constraintTop_toBottomOf="@+id/textView_counselorName" />
+
 
 </android.support.constraint.ConstraintLayout>

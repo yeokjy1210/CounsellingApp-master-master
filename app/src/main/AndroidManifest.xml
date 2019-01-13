@@ -18,6 +18,7 @@
         <activity android:name=".aboutUs" />
         <activity android:name=".eventList" />
         <activity android:name=".counselorDetail" />
+        <activity android:name=".SelectSchedule"/>
         <activity
             android:name=".homepage"
             android:label="@string/title_activity_homepage"
@@ -31,11 +32,10 @@
         </activity>
         <activity
             android:name=".register"
-            android:parentActivityName=".login"></activity>
+            android:parentActivityName=".login" />
         <activity
             android:name=".ScheduleTable"
             android:label="View Schedule">
-
         </activity>
         <activity
             android:name=".userProfile"
