@@ -8,31 +8,23 @@ public class Event {
     private String eventTime;
     private String eventVenue;
     private int eventFee;
+    private String eventImg;
 
-    public Event(){
-
-    }
-
-    public Event(String eventName, String eventDate, int eventFee) {
-        this.eventName = eventName;
-        this.eventDate = eventDate;
-        this.eventFee = eventFee;
-    }
-
-    public Event(String eventName, String eventDesc, String eventDate,
-                 String eventTime, String eventVenue, int eventFee) {
+    public Event(String eventID, String eventName, String eventDesc, String eventDate,
+                 String eventTime, String eventVenue, int eventFee, String eventImg) {
+        this.eventID = eventID;
         this.eventName = eventName;
         this.eventDesc = eventDesc;
         this.eventDate = eventDate;
         this.eventTime = eventTime;
         this.eventVenue = eventVenue;
         this.eventFee = eventFee;
+        this.eventImg = eventImg;
     }
 
     public String getEventID() {
         return eventID;
     }
-
 
     public String getEventName() {
         return eventName;
@@ -58,4 +50,7 @@ public class Event {
         return eventFee;
     }
 
+    public String getEventImg() {
+        return eventImg;
+    }
 }

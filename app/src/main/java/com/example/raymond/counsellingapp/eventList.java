@@ -39,7 +39,7 @@ import java.util.List;
 public class eventList extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static String GET_URL = "http://counsellingapptarc.000webhostapp.com/androidphp/getEvent.php";
+    private static String GET_URL = "http://10.0.2.2/ky/getEvent.php";
     ListView mListView;
     RequestQueue queue;
     List<Event> eventList;
@@ -96,18 +96,23 @@ public class eventList extends AppCompatActivity
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 Intent intent = new Intent(getApplicationContext(), eventDetail.class);
+                String id = eventList.get(position).getEventID();
                 String name = eventList.get(position).getEventName();
                 String desc = eventList.get(position).getEventDesc();
                 String date = eventList.get(position).getEventDate();
                 String time = eventList.get(position).getEventTime();
                 String venue = eventList.get(position).getEventVenue();
                 int fee = eventList.get(position).getEventFee();
+                String img = eventList.get(position).getEventImg();
+
+                intent.putExtra("eventID", id);
                 intent.putExtra("eventName", name);
                 intent.putExtra("eventDesc", desc);
                 intent.putExtra("eventDate", date);
                 intent.putExtra("eventTime", time);
                 intent.putExtra("eventVenue", venue);
                 intent.putExtra("eventFee", fee);
+                intent.putExtra("eventImg", img);
                 startActivity(intent);
             }
         });
@@ -202,13 +207,15 @@ public class eventList extends AppCompatActivity
                                 JSONArray responseEvent = response.getJSONArray("event");
                                 for (int i = 0; i < responseEvent.length(); i++) {
                                     JSONObject eventObj = responseEvent.getJSONObject(i);
+                                    String id = eventObj.getString("eventID");
                                     String name = eventObj.getString("eventName");
                                     String desc = eventObj.getString("eventDesc");
                                     String date = eventObj.getString("eventDate");
                                     String time = eventObj.getString("eventTime");
                                     String venue = eventObj.getString("eventVenue");
                                     int fee = eventObj.getInt("eventFee");
-                                    Event event = new Event(name, desc, date, time, venue, fee);
+                                    String img = eventObj.getString("eventImg");
+                                    Event event = new Event(id, name, desc, date, time, venue, fee, img);
                                     eventList.add(event);
                                 }
                                 loadEvent();
@@ -223,7 +230,7 @@ public class eventList extends AppCompatActivity
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
-                        Toast.makeText(getApplicationContext(), "Error: " + volleyError.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Volley Error: " + volleyError.getMessage(), Toast.LENGTH_LONG).show();
 
                     }
                 });

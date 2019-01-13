@@ -24,7 +24,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
-                android:id="@+id/img_event_detail"
+                android:id="@+id/imgEvent"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
                 android:contentDescription="@string/event_image"

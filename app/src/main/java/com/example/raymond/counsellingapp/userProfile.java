@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ public class userProfile extends AppCompatActivity
     Toolbar toolbar=null;
     ImageView imgStuView;
     TextView txtStuName, txtStuEmail,contentStuName,contentStuEmail,contentStuPhone,contentDOB;
+    Button btnUpdate,btnImg;
     private SharedPreferences prefs;
 
 
@@ -56,6 +58,15 @@ public class userProfile extends AppCompatActivity
             txtStuName.setText(prefs.getString("studentName","No name"));
             txtStuEmail.setText(prefs.getString("studentEmail","No email"));
         }
+        headerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent s= new Intent(userProfile.this,userProfile.class);
+                startActivity(s);            }
+        });
+
+        btnUpdate = findViewById(R.id.updateUser);
+        btnImg = findViewById(R.id.updatePicture);
 
         contentStuName = findViewById(R.id.userName);
         contentStuEmail = findViewById(R.id.userEmail);
@@ -67,7 +78,13 @@ public class userProfile extends AppCompatActivity
         contentStuPhone.setText(prefs.getString("studentDOB","No dob"));
         contentDOB.setText(prefs.getString("studentDOB","No dob"));
 
-
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentZ= new Intent(userProfile.this,updateProfile.class);
+                startActivity(intentZ);            
+            }
+        });
     }
 
     @Override

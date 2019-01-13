@@ -39,7 +39,10 @@
             android:name=".userProfile"
             android:label="@string/title_activity_user_profile"
             android:theme="@style/AppTheme" />
-        <activity android:name=".xxxx"></activity>
+        <activity
+            android:name=".updateProfile"
+            android:label="@string/title_activity_user_profile"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

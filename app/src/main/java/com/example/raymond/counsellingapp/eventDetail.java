@@ -3,9 +3,12 @@ package com.example.raymond.counsellingapp;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Base64;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class eventDetail extends AppCompatActivity
@@ -26,6 +30,7 @@ public class eventDetail extends AppCompatActivity
     TextView txtStuName, txtStuEmail;
     private SharedPreferences prefs;
     TextView name, desc, date, time, venue, fee;
+    ImageView img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,12 +78,15 @@ public class eventDetail extends AppCompatActivity
         String timeExtra = getIntent().getStringExtra("eventTime");
         String venueExtra = getIntent().getStringExtra("eventVenue");
         int feeExtra = getIntent().getIntExtra("eventFee", 0);
+        String imgExtra = getIntent().getStringExtra("eventImg");
+
         name = findViewById(R.id.txtName);
         desc = findViewById(R.id.txtDesc);
         date = findViewById(R.id.txtDate);
         time = findViewById(R.id.txtTime);
         venue = findViewById(R.id.txtVenue);
         fee = findViewById(R.id.txtFee);
+        img = findViewById(R.id.imgEvent);
 
         name.setText(nameExtra);
         desc.setText(descExtra);
@@ -86,7 +94,20 @@ public class eventDetail extends AppCompatActivity
         time.setText(timeExtra);
         venue.setText(venueExtra);
         fee.setText("" + feeExtra);
+        showImage(imgExtra);
 
+    }
+
+    private void showImage(String image) {
+
+        byte[] decodedString = Base64.decode(image, Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString,
+                0, decodedString.length);
+        if (decodedByte != null) {
+            img.setImageBitmap(decodedByte);
+        } else {
+            img.setImageResource(R.drawable.hope_icon);
+        }
     }
 
     @Override
